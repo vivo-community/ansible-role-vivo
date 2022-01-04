@@ -1,0 +1,17 @@
+---
+
+- name: Clone Vitro-languages from github
+  ansible.builtin.git:
+    repo: "{{ vivo_vitrolang_giturl }}"
+    dest: "{{ vivo_clone_dir }}/Vitro-languages"
+    version: "{{ vivo_gitbranch }}"
+    depth: 1
+  register: vitrolang
+
+- name: Clone VIVO-languages from github
+  ansible.builtin.git:
+    repo: "{{ vivo_vivolang_giturl }}"
+    dest: "{{ vivo_clone_dir }}/VIVO-languages"
+    version: "{{ vivo_gitbranch }}"
+    depth: 1
+  register: vivolang

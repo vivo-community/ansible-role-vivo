@@ -1,0 +1,51 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  gather_facts: false
+
+  tasks:
+
+  # Make sure Java JDK is installed with version 8 or higher
+  - name: Fetch Java version
+    shell: javac -version 2>&1 | awk -F' ' '{print $2}'
+    register: javac_version
+
+  - name: Make sure Java JDK is installed with version 8 or higher
+    assert:
+      that:
+        - javac_version.stdout is version('1.8', '>=')
+
+
+  # Make sure solr is running and discovered vivocore
+  - name: Check that solr is running
+    uri:
+      url: http://localhost:8983/solr
+      status_code: 200
+
+  - name: Check that solr discovered vivocore
+    uri:
+      url: http://localhost:8983/solr/vivocore/admin/ping
+      return_content: yes
+      status_code: 200
+      body_format: json
+    register: pingdata
+    failed_when: pingdata.json.status != "OK"
+
+
+  # Make sure tomcat is running
+  - name: Check that tomcat is running
+    uri:
+      url: http://localhost:8080/
+      status_code: 200
+
+
+  # Make sure VIVO is available
+  - name: Make sure VIVO is available
+    uri:
+      url: http://localhost:8080/vivo
+      status_code: 200
+      return_content: yes
+    register: this
+    failed_when: "'error' in this.content"

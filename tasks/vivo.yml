@@ -1,0 +1,48 @@
+---
+# tasks file for vivo installation
+# following instructions on https://wiki.lyrasis.org/display/VIVODOC112x/Installing+VIVO
+
+- name: Clone Vitro from github
+  ansible.builtin.git:
+    repo: "{{ vivo_vitro_giturl }}"
+    dest: "{{ vivo_clone_dir }}/Vitro"
+    version: "{{ vivo_gitbranch }}"
+    depth: 1
+  register: vitroclone
+
+- name: Clone VIVO from github
+  ansible.builtin.git:
+    repo: "{{ vivo_vivo_giturl }}"
+    dest: "{{ vivo_clone_dir }}/VIVO"
+    version: hotfix/VIVO-3610 #"{{ vivo_gitbranch }}"
+    depth: 1
+  register: vivoclone
+
+- name: Include languages
+  ansible.builtin.include_tasks:
+    file: vivo-languages.yml
+  when: vivo_version is version('1.12', '>=')
+
+- name: Template settings file to VIVO dir
+  ansible.builtin.template:
+    src: settings.xml.j2
+    dest: "{{ vivo_clone_dir }}/VIVO/installer/settings.xml"
+    mode: 0644
+  register: settings
+
+- name: Install VIVO
+  ansible.builtin.include_tasks:
+    file: vivo-install.yml
+  when: vitroclone.changed or vivoclone.changed or settings.changed or (vitrolang is defined and vitrolang.changed) or (vivolang is defined and vivolang.changed) # ugly but idempotent
+
+- name: Copy runtime.properties to VIVO installation dir
+  ansible.builtin.copy:
+    src: "{{ vivo_runtime_properties_file }}"
+    dest: "{{ vivo_settings_vivodir }}/config/runtime.properties"
+  notify:
+    - restart tomcat
+
+- name: Copy applicationSetup file to VIVO installation dir
+  ansible.builtin.copy:
+    src: "{{ vivo_applicationsetup_file }}"
+    dest: "{{ vivo_settings_vivodir }}/config/applicationSetup.n3"

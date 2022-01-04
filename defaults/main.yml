@@ -1,0 +1,25 @@
+---
+# defaults file for ansible-role-vivo
+
+####### REQUIREMENTS SETTINGS ##################
+# solr settings - defaults from geerlingguy.solr
+vivo_solr_home: /var/solr/data             # solr_home
+vivo_solr_user: solr                       # solr user
+vivo_solr_group: solr                      # solr group
+vivo_solr_service_name: solr               # service name to restart solr if handler is enabled
+vivo_solr_restart_handler_enabled: true    # enable or disable solr restart
+
+# tomcat settings - defaults from robertdebock.tomcat
+vivo_tomcat_user: tomcat                   # tomcat user
+vivo_tomcat_group: tomcat                  # tomcat group
+vivo_tomcat_service_name: tomcat           # service name to restart tomcat if handler is enabled
+vivo_tomcat_restart_handler_enabled: true  # enable or disable tomcat restart
+
+
+################# VIVO SETTINGS ##################
+vivo_version: 1.12.1                        # version of VIVO (currently supported: 1.12.1)
+# overwrite example-settings.xml
+vivo_settings_appname: vivo
+vivo_settings_vivodir: /usr/local/vivo/home # dir where vivo will be installed
+vivo_settings_tomcatdir: /opt/tomcat        # dir where tomcat is installed into
+vivo_settings_defaulttheme: wilma

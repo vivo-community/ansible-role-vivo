@@ -1,0 +1,14 @@
+---
+
+- name: Stop tomcat before installing VIVO
+  ansible.builtin.service:
+    name: "{{ vivo_tomcat_service_name }}"
+    state: stopped
+
+- name: Install VIVO using maven
+  become: yes
+  ansible.builtin.command: mvn clean install -q -DskipTests -s installer/settings.xml
+  args:
+    chdir: "{{ vivo_clone_dir }}/VIVO"
+  notify:
+    - restart tomcat

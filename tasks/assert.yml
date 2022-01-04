@@ -1,0 +1,102 @@
+---
+# check VIVO values
+- name: test if vivo_version is set correctly
+  ansible.builtin.assert:
+    that:
+      - vivo_version is defined
+      - vivo_version is string
+      - vivo_version in [ "1.12.1" ]
+    quiet: yes
+
+- name: test if vivo_settings_appname is set correctly
+  ansible.builtin.assert:
+    that:
+      - vivo_settings_appname is defined
+      - vivo_settings_appname is string
+    quiet: yes
+
+- name: test if vivo_settings_vivodir is set correctly
+  ansible.builtin.assert:
+    that:
+      - vivo_settings_vivodir is defined
+      - vivo_settings_vivodir is string
+    quiet: yes
+
+- name: test if vivo_settings_tomcatdir is set correctly
+  ansible.builtin.assert:
+    that:
+      - vivo_settings_tomcatdir is defined
+      - vivo_settings_tomcatdir is string
+    quiet: yes
+
+- name: test if vivo_settings_defaulttheme is set correctly
+  ansible.builtin.assert:
+    that:
+      - vivo_settings_defaulttheme is defined
+      - vivo_settings_defaulttheme is string
+    quiet: yes
+
+# check tomcat values
+- name: test if vivo_tomcat_user is set correctly
+  ansible.builtin.assert:
+    that:
+      - vivo_tomcat_user is defined
+      - vivo_tomcat_user is string
+    quiet: yes
+
+- name: test if vivo_tomcat_group is set correctly
+  ansible.builtin.assert:
+    that:
+      - vivo_tomcat_group is defined
+      - vivo_tomcat_group is string
+    quiet: yes
+
+- name: test if vivo_tomcat_service_name is set correctly
+  ansible.builtin.assert:
+    that:
+      - vivo_tomcat_service_name is defined
+      - vivo_tomcat_service_name is string
+    quiet: yes
+
+- name: test if vivo_tomcat_restart_handler_enabled is set correctly
+  ansible.builtin.assert:
+    that:
+      - vivo_tomcat_restart_handler_enabled is defined
+      - vivo_tomcat_restart_handler_enabled is boolean
+    quiet: yes
+
+# check solr values
+- name: test if vivo_solr_home is set correctly
+  ansible.builtin.assert:
+    that:
+      - vivo_solr_home is defined
+      - vivo_solr_home is string
+    quiet: yes
+
+- name: test if vivo_solr_user is set correctly
+  ansible.builtin.assert:
+    that:
+      - vivo_solr_user is defined
+      - vivo_solr_user is string
+    quiet: yes
+
+- name: test if vivo_solr_group is set correctly
+  ansible.builtin.assert:
+    that:
+      - vivo_solr_group is defined
+      - vivo_solr_group is string
+    quiet: yes
+
+- name: test if vivo_solr_service_name is set correctly
+  ansible.builtin.assert:
+    that:
+      - vivo_solr_service_name is defined
+      - vivo_solr_service_name is string
+    quiet: yes
+
+- name: test if vivo_solr_restart_handler_enabled is set correctly
+  ansible.builtin.assert:
+    that:
+      - vivo_solr_restart_handler_enabled is defined
+      - vivo_solr_restart_handler_enabled is boolean
+    quiet: yes

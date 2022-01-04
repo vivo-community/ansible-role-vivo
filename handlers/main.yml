@@ -1,0 +1,26 @@
+---
+# handlers file
+
+- name: restart solr
+  ansible.builtin.service:
+    name: "{{ vivo_solr_service_name }}"
+    state: restarted
+  when:
+    - not ansible_check_mode | bool
+    - vivo_solr_restart_handler_enabled
+  register: solr_restart
+  until: solr_restart.status.ActiveState == "active"
+  retries: 5
+  delay: 20
+
+- name: restart tomcat
+  ansible.builtin.service:
+    name: "{{ vivo_tomcat_service_name }}"
+    state: restarted
+  when:
+    - not ansible_check_mode | bool
+    - vivo_tomcat_restart_handler_enabled
+  register: tomcat_restart
+  until: tomcat_restart.status.ActiveState == "active"
+  retries: 5
+  delay: 20

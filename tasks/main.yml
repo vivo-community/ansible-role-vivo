@@ -1,0 +1,24 @@
+---
+# tasks file for vivo installation
+# following instructions on https://wiki.lyrasis.org/display/VIVODOC112x/Installing+VIVO
+
+- name: Check default values
+  ansible.builtin.import_tasks: assert.yml
+  run_once: yes
+  delegate_to: localhost
+
+- name: Configure Solr
+  ansible.builtin.include_tasks:
+    file: solr-config.yml
+
+- name: Install VIVO
+  ansible.builtin.include_tasks:
+    file: vivo.yml
+
+- name: Configure tomcat
+  ansible.builtin.include_tasks:
+    file: tomcat-config.yml
+
+- name: Set permissions for tomcat directories and VIVO installation dir
+  ansible.builtin.include_tasks:
+    file: tomcat-permissions.yml

@@ -1,0 +1,20 @@
+---
+# vars file for ansible-role-vivo
+
+# directory where github repos will be cloned into
+vivo_clone_dir: /var/git/vivo
+
+# vivo solr core on github
+vivo_solrcore_giturl: https://github.com/vivo-project/vivo-solr.git
+vivo_solrcore_gitversion: cbd8d2090dd20328570b3513b0dc980f6a4e59a0 # commit since no tags available
+
+# vivo & vitro & their language packages on github
+vivo_vitro_giturl: https://github.com/vivo-project/Vitro.git
+vivo_vivo_giturl: https://github.com/vivo-project/VIVO.git
+vivo_vitrolang_giturl: https://github.com/vivo-project/Vitro-languages.git
+vivo_vivolang_giturl: https://github.com/vivo-project/VIVO-languages.git
+vivo_gitbranch: rel-1.12.1-maint
+
+# filenames
+vivo_runtime_properties_file: example.runtime.properties
+vivo_applicationsetup_file: example.applicationSetup.n3

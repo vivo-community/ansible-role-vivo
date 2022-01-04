@@ -1,0 +1,29 @@
+---
+# Configure and Start Solr
+# see https://wiki.lyrasis.org/display/VIVODOC111x/Installing+VIVO#InstallingVIVO-ConfigureandStartSolr
+
+- name: Prerequisite - install ps to monitor and control services
+  ansible.builtin.package:
+    name: procps
+    state: present
+
+- name: Clone VIVO's solr core
+  ansible.builtin.git:
+    repo: "{{ vivo_solrcore_giturl }}"
+    dest: "{{ vivo_clone_dir }}/vivo-solr"
+    version: "{{ vivo_solrcore_gitversion }}"
+
+- name: Copy VIVO's solr core in subdirectory of solr_home for core discovery
+  ansible.builtin.copy:
+    src: "{{ vivo_clone_dir }}/vivo-solr/vivocore"
+    dest: "{{ vivo_solr_home }}/cores"
+    remote_src: yes
+    directory_mode: yes
+    owner: "{{ vivo_solr_user }}"
+    group: "{{ vivo_solr_group }}"
+    mode: 0755
+  notify:
+    - restart solr
+
+- name: If solr needs restart, do it asap (takes time)
+  meta: flush_handlers

@@ -1,0 +1,21 @@
+galaxy_info:
+  author: Sandra Mierz
+  namespace: smierz
+  role_name: vivo
+  description: Install and configure VIVO on your system.
+  company: TIB
+
+  license: Apache-2.0
+
+  min_ansible_version: 2.10
+
+  platforms:
+    - name: Debian
+      versions:
+        - 9
+
+  galaxy_tags:
+    - vivo
+    - vitro
+
+dependencies: []

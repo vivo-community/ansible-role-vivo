@@ -1,0 +1,37 @@
+---
+# Configure and Start tomcat
+# see https://wiki.lyrasis.org/display/VIVODOC111x/Installing+VIVO#InstallingVIVO-ConfigureandStartTomcat
+
+# Set JVM parameters - skipped
+# setting Xms, Xmx, MaxPermSize values is covered by robertdebock.tomcat role
+
+# Set security limits
+- name: Add or modify hard nproc limit for tomcat domain
+  community.general.pam_limits:
+    domain: tomcat
+    limit_type: hard
+    limit_item: nproc
+    value: 1500
+
+# Set URI encoding
+- name: Install dependencies as prerequisite to use community.general.xml
+  ansible.builtin.package:
+    name:
+      - python3
+      - python3-pip
+      - python3-setuptools
+    state: present
+
+- name: Install lxml package as prerequisite to use community.general.xml
+  pip:
+    name:
+      - lxml
+
+- name: Set URIEncoding=UTF-8 in every Connector in tomcat
+  community.general.xml:
+    path: "{{ vivo_settings_tomcatdir }}/conf/server.xml"
+    xpath: /Server/Service/Connector
+    attribute: URIEncoding
+    value: UTF-8
+  notify:
+    - restart tomcat

@@ -1,0 +1,36 @@
+---
+- name: prepare
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  roles:
+    # prepare instance for ansible
+    - role: robertdebock.bootstrap
+    - role: robertdebock.core_dependencies
+
+    # install java jdk
+    - role: robertdebock.java
+      java_vendor: openjdk
+      java_type: jdk
+      java_default_version: "8"
+
+    # install solr with no initial cores
+    # but don't start it (solr is not started until vivocore is in place for discovery)
+    - role: geerlingguy.solr
+      solr_version: "8.11.1"
+      solr_cores:
+      solr_service_state: stopped
+      solr_restart_handler_enabled: false
+
+    # install tomcat
+    # and set CATALINA_OPTS="-Xms512m -Xmx512m -XX:MaxPermSize=128m"
+    # see https://wiki.lyrasis.org/display/VIVODOC112x/Installing+VIVO#InstallingVIVO-ConfigureandStartTomcat
+    - role: robertdebock.tomcat
+      tomcat_version: 9
+      java_opts:
+        - name: CATALINA_OPTS
+          value: "-Xms512m -Xmx512m -XX:MaxPermSize=128m"
+
+    # install maven
+    - role: gantsign.maven

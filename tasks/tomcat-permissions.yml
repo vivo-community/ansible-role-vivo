@@ -1,0 +1,67 @@
+---
+############################################################################
+## Delete tomcat webapps: docs and examples
+## as described in https://tomcat.apache.org/tomcat-9.0-doc/security-howto.html
+
+- name: Delete tomcat docs and examples
+  file:
+    state: absent
+    path: "{{ item }}"
+  loop:
+  - "{{ vivo_settings_tomcatdir }}/webapps/docs/"
+  - "{{ vivo_settings_tomcatdir }}/webapps/examples/"
+
+
+############################################################################
+## Change permissions on tomcat folders
+## as described in https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-9-on-debian-10
+
+- name: Give the tomcat group ownership over the entire tomcat directory
+  ansible.builtin.file:
+    path: "{{ vivo_settings_tomcatdir }}"
+    state: directory
+    recurse: yes
+    group: "{{ vivo_tomcat_group }}"
+
+- name: Give the tomcat group read access to the conf directory and all of its contents
+  ansible.builtin.file:
+    path: "{{ vivo_settings_tomcatdir }}/conf"
+    state: directory
+    recurse: yes
+    group: "{{ vivo_tomcat_group }}"
+    mode: g+r
+
+- name: Give the tomcat group execute access to the directory itself
+  ansible.builtin.file:
+    path: "{{ vivo_settings_tomcatdir }}/conf"
+    state: directory
+    group: "{{ vivo_tomcat_group }}"
+    mode: g+x
+
+- name: Make the tomcat user the owner of the webapps, work, temp, and logs directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    recurse: yes
+    owner: "{{ vivo_tomcat_user }}"
+  loop:
+    - "{{ vivo_settings_tomcatdir }}/logs"
+    - "{{ vivo_settings_tomcatdir }}/temp"
+    - "{{ vivo_settings_tomcatdir }}/work"
+    - "{{ vivo_settings_tomcatdir }}/webapps"
+
+
+## Change permissions on vivo installation folder
+- name: Put the tomcat group as group of the vivo folders
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    recurse: "{{ 'no' if item == vivo_settings_vivodir else 'yes' }}"
+    group: "{{ vivo_tomcat_group }}"
+    mode: g+rws
+  loop:
+    - "{{ vivo_settings_vivodir }}"
+    - "{{ vivo_settings_vivodir }}/bin"
+    - "{{ vivo_settings_vivodir }}/config"
+    - "{{ vivo_settings_vivodir }}/rdf"
+    - "{{ vivo_settings_tomcatdir }}/webapps/{{ vivo_settings_appname }}"
