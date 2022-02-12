@@ -14,7 +14,7 @@
   ansible.builtin.git:
     repo: "{{ vivo_vivo_giturl }}"
     dest: "{{ vivo_clone_dir }}/VIVO"
-    version: hotfix/VIVO-3610 #"{{ vivo_gitbranch }}"
+    version: "{{ vivo_gitbranch }}"
     depth: 1
   register: vivoclone
 
