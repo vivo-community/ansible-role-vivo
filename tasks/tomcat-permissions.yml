@@ -1,18 +1,5 @@
 ---
-############################################################################
-## Delete tomcat webapps: docs and examples
-## as described in https://tomcat.apache.org/tomcat-9.0-doc/security-howto.html
 
-- name: Delete tomcat docs and examples
-  file:
-    state: absent
-    path: "{{ item }}"
-  loop:
-  - "{{ vivo_settings_tomcatdir }}/webapps/docs/"
-  - "{{ vivo_settings_tomcatdir }}/webapps/examples/"
-
-
-############################################################################
 ## Change permissions on tomcat folders
 ## as described in https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-9-on-debian-10
 
