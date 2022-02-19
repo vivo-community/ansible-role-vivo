@@ -1,11 +1,6 @@
 ---
 # Configure and Start Solr
-# see https://wiki.lyrasis.org/display/VIVODOC111x/Installing+VIVO#InstallingVIVO-ConfigureandStartSolr
-
-- name: Prerequisite - install ps to monitor and control services
-  ansible.builtin.package:
-    name: procps
-    state: present
+# see https://wiki.lyrasis.org/display/VIVODOC112x/Installing+VIVO#InstallingVIVO-ConfigureandStartSolr
 
 - name: Clone VIVO's solr core
   ansible.builtin.git:
