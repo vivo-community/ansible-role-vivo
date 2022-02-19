@@ -33,7 +33,12 @@
 - name: Install VIVO
   ansible.builtin.include_tasks:
     file: vivo-install.yml
-  when: vitroclone.changed or vivoclone.changed or settings.changed or (vitrolang is defined and vitrolang.changed) or (vivolang is defined and vivolang.changed) # ugly but idempotent
+  when: >  # ugly but idempotent
+    vitroclone.changed or 
+    vivoclone.changed or 
+    settings.changed or 
+    (vitrolang is defined and vitrolang.changed) or 
+    (vivolang is defined and vivolang.changed) 
 
 - name: Copy runtime.properties to VIVO installation dir
   ansible.builtin.copy:
