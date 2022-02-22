@@ -17,7 +17,7 @@ vivo_tomcat_restart_handler_enabled: true  # enable or disable tomcat restart
 
 
 ################# VIVO SETTINGS ##################
-vivo_version: 1.12.1                        # version of VIVO (currently supported: 1.12.1)
+vivo_version: 1.12.2                        # version of VIVO (currently supported: 1.12.1 and 1.12.2)
 # overwrite example-settings.xml
 vivo_settings_appname: vivo
 vivo_settings_vivodir: /usr/local/vivo/home # dir where vivo will be installed

@@ -4,7 +4,7 @@
   ansible.builtin.git:
     repo: "{{ vivo_vitrolang_giturl }}"
     dest: "{{ vivo_clone_dir }}/Vitro-languages"
-    version: "{{ vivo_gitbranch }}"
+    version: "{{ vivo_vitrolang_gitbranch }}"
     depth: 1
   register: vitrolang
 
@@ -12,6 +12,6 @@
   ansible.builtin.git:
     repo: "{{ vivo_vivolang_giturl }}"
     dest: "{{ vivo_clone_dir }}/VIVO-languages"
-    version: "{{ vivo_gitbranch }}"
+    version: "{{ vivo_vivolang_gitbranch }}"
     depth: 1
   register: vivolang
