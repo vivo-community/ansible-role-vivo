@@ -6,7 +6,7 @@
   ansible.builtin.git:
     repo: "{{ vivo_vitro_giturl }}"
     dest: "{{ vivo_clone_dir }}/Vitro"
-    version: "{{ vivo_gitbranch }}"
+    version: "{{ vivo_vitro_gitbranch }}"
     depth: 1
   register: vitroclone
 
@@ -14,7 +14,7 @@
   ansible.builtin.git:
     repo: "{{ vivo_vivo_giturl }}"
     dest: "{{ vivo_clone_dir }}/VIVO"
-    version: "{{ vivo_gitbranch }}"
+    version: "{{ vivo_vivo_gitbranch }}"
     depth: 1
   register: vivoclone
 

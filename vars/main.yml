@@ -13,7 +13,15 @@ vivo_vitro_giturl: https://github.com/vivo-project/Vitro.git
 vivo_vivo_giturl: https://github.com/vivo-project/VIVO.git
 vivo_vitrolang_giturl: https://github.com/vivo-project/Vitro-languages.git
 vivo_vivolang_giturl: https://github.com/vivo-project/VIVO-languages.git
-vivo_gitbranch: rel-1.12.1-maint
+
+# map version to gitbranch name
+_vivo_version2branch:
+  1.12.1: rel-1.12.1-maint
+  1.12.2: rel-1.12.2-maint
+vivo_vitro_gitbranch: "{{ _vivo_version2branch[vivo_version] }}"
+vivo_vivo_gitbranch: "{{ _vivo_version2branch[vivo_version] }}"
+vivo_vitrolang_gitbranch: "{{ _vivo_version2branch[vivo_version] }}"
+vivo_vivolang_gitbranch: "{{ _vivo_version2branch[vivo_version] }}"
 
 # filenames
 vivo_runtime_properties_file: example.runtime.properties

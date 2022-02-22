@@ -5,7 +5,7 @@
     that:
       - vivo_version is defined
       - vivo_version is string
-      - vivo_version in [ "1.12.1" ]
+      - vivo_version in [ "1.12.1", "1.12.2" ]
     quiet: yes
 
 - name: test if vivo_settings_appname is set correctly

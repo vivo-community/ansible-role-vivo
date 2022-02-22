@@ -97,14 +97,14 @@ using the tomcat user and group.
 
 ```yaml
 ################# VIVO SETTINGS ##################
-vivo_version: 1.12.1                        # version of VIVO (currently supported: 1.12.1)
+vivo_version: 1.12.2                        # version of VIVO (currently supported: 1.12.1 and 1.12.2)
 # overwrite example-settings.xml
 vivo_settings_appname: vivo
 vivo_settings_vivodir: /usr/local/vivo/home # dir where vivo will be installed
 vivo_settings_tomcatdir: /opt/tomcat        # dir where tomcat is installed into
 vivo_settings_defaulttheme: wilma
 ```
-Currently the VIVO installation covers only version 1.12.1 and will include VIVO-languages and Vitro-languages. 
+Currently the VIVO installation covers only version 1.12.1 and 1.12.2 and will include VIVO-languages and Vitro-languages. 
 Additionally the required parameters for the settings.xml file are needed, because they will be used during installation.
 
 Compatibility
