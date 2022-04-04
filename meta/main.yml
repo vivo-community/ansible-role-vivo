@@ -1,6 +1,6 @@
 galaxy_info:
   author: Sandra Mierz
-  namespace: smierz
+  namespace: vivo_community
   role_name: vivo
   description: Install and configure VIVO on your system.
   company: TIB

@@ -14,3 +14,5 @@ roles:
     version: 5.3.4
   - name: gantsign.maven
     version: 5.6.3
+collections:
+  - name: community.general

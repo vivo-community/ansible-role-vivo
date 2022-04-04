@@ -13,7 +13,7 @@ name: molecule-ci
 
 defaults:
   run:
-    working-directory: 'smierz.vivo'
+    working-directory: 'vivo_community.vivo'
 
 jobs:
 
@@ -24,7 +24,7 @@ jobs:
       - name: Check out the codebase.
         uses: actions/checkout@v2
         with:
-          path: 'smierz.vivo'
+          path: 'vivo_community.vivo'
 
       - name: Set up Python 3.
         uses: actions/setup-python@v2
@@ -45,7 +45,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # VIVO 1.12.1
          # - distro: centos7
           #  playbook: converge.yml
          # - distro: ubuntu1804
@@ -57,7 +56,7 @@ jobs:
       - name: Check out the codebase.
         uses: actions/checkout@v2
         with:
-          path: 'smierz.vivo'
+          path: 'vivo_community.vivo'
 
       - name: Set up Python 3.
         uses: actions/setup-python@v2

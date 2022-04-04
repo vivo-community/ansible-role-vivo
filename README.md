@@ -1,4 +1,4 @@
-[![CI](https://github.com/smierz/ansible-role-vivo/workflows/molecule-ci/badge.svg?event=push)](https://github.com/smierz/ansible-role-vivo/actions?query=workflow%3Amolecule-ci)
+[![CI](https://github.com/vivo-community/ansible-role-vivo/workflows/molecule-ci/badge.svg?event=push)](https://github.com/vivo-community/ansible-role-vivo/actions?query=workflow%3Amolecule-ci)
 
 
 Ansible role to install VIVO
@@ -20,7 +20,7 @@ This example is taken from `molecule/default/converge.yml`.
   gather_facts: true
 
   roles:
-    - role: ansible-role-vivo
+    - role: vivo_community.vivo
 ```
 
 Requirements
@@ -51,6 +51,7 @@ that need to be installed beforehand. In CI this is done using `molecule/default
       solr_cores:
       solr_service_state: stopped
       solr_restart_handler_enabled: false
+      solr_service_manage: false
 
     # install tomcat
     # and set CATALINA_OPTS="-Xms512m -Xmx512m -XX:MaxPermSize=128m"
