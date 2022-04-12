@@ -21,4 +21,4 @@
     - restart solr
 
 - name: If solr needs restart, do it asap (takes time)
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
