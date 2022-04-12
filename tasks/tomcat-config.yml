@@ -15,7 +15,7 @@
 
 # Set URI encoding
 - name: Install lxml package as prerequisite to use community.general.xml
-  pip:
+  ansible.builtin.pip:
     name:
       - lxml
 
