@@ -8,6 +8,8 @@ Ansible role to install and configure [VIVO](https://github.com/vivo-project/VIV
 the extensible semantic web application for research discovery and showcasing scholarly work.
 It follows the directions given in the [Installing VIVO](https://wiki.lyrasis.org/display/VIVODOC112x/Installing+VIVO) guide.
 
+*A complete Ansible playbook that uses this role to install VIVO after installing all of its system requirements
+can be found in this accompanying GitHub repo [vivo-ansible-playbook](https://github.com/vivo-community/vivo-ansible-playbook).*
 
 Example Playbook
 ----------------
